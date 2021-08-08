@@ -9,6 +9,7 @@ const mongoose=require("mongoose");
 
 //routes
 const authRoutes=require("./routes/auth");
+const adminRoutes=require("./routes/admin/auth");
 
 
  // environment variable or consttant
@@ -36,6 +37,7 @@ const authRoutes=require("./routes/auth");
 app.use(express.json());//using middlewere for passing data
 
 app.use('/api',authRoutes);
+app.use('/api',adminRoutes);
 
 app.listen(process.env.PORT,()=>{
     console.log(`server is running on port ${process.env.PORT}`);
