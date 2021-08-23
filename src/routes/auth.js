@@ -1,11 +1,12 @@
 const { json } = require("body-parser");
 const express =require("express");
 const { signup, signin, requiresignin } = require("../controller/auth");
+const { validateSignupRequest, isRequestValidated, validateSigninRequest } = require("../validator/auth");
 const router=express.Router();
 
 
-router.post("/signup",signup);
-router.post("/signin",signin);
+router.post("/signup",validateSignupRequest,isRequestValidated,signup);
+router.post("/signin",validateSigninRequest,isRequestValidated,signin);
 
 
 // router.post("/profile",requiresignin,(req,res)=>{
@@ -13,4 +14,4 @@ router.post("/signin",signin);
 // });
 
 
-module.exports=router;
+module.exports=router; 
