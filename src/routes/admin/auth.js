@@ -1,6 +1,6 @@
-const { json } = require("body-parser");
+
 const express =require("express");
-const { signup, signin, requiresignin } = require("../../controller/admin/auth");
+const { signup, signin} = require("../../controller/admin/auth");
 const { validateSignupRequest,isRequestValidated, validateSigninRequest } = require("../../validator/auth");
 const router=express.Router();
 

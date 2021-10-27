@@ -40,7 +40,7 @@ exports.signup=(req,res)=>{
             }
             if(data){
                 return res.status(201).json({
-                    message:"user created successfullu...!"
+                    message:"user created successfully ...!"
                 })
             }
          });
@@ -80,10 +80,3 @@ exports.signin=(req,res)=>{
     })
 }
 
-exports.requiresignin=(req,res,next)=>{
-    const token=req.headers.authorization.split(" ")[1];   
-    const user=jwt.verify(token,process.env.JWT_SECRET);
-    req.user=user;
-    next();
-   
-}
