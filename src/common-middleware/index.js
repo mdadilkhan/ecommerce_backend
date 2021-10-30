@@ -26,7 +26,8 @@ exports.userMiddleware=(req,res,next)=>{
 
 }
 
-//user middle for customers
+
+//admin middle for admin
 exports.adminMiddleware=(req,res,next)=>{
     if(req.user.role!=='admin'){
         return res.status(400).json({message:'Admin Access denied'})
