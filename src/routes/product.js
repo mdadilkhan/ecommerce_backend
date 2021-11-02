@@ -2,15 +2,16 @@ const express=require('express');
 const { requireSignin, adminMiddleware } = require('../common-middleware');
 const { createProduct } = require('../controller/product');
 const multer=require('multer');//for file upload,you can use formadible or file-uploader from npm for simiar work
-const shortid=require('shortid'); 
 const router=express.Router();
+const shortid=require('shortid'); 
 const path=require('path');
+
  
 
 
-// its a multer library it is going to use method diskStorage which has two two properties
-// destination(where to use file) and file name and save in mongo db database
-//  we set the destination pareale to rendering js file or just inside src folder
+// its a multer library it is going to use method diskStorage which has two properties
+// destination(where to store file) and file name and save in mongo db database
+//  we set the destination parealel to rendering js file or just inside src folder
 //created storage
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {

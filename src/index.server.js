@@ -5,6 +5,7 @@ const express = require("express");
 const env=require("dotenv");
 const app=express();
 const mongoose=require("mongoose");
+const path=require('path');
 
 
 //routes
@@ -35,8 +36,14 @@ const cartRoutes=require('./routes/cart');
 
 
 
+//using middlewere for passing data in json file none of the file is exposed towards
+// the browser
+app.use(express.json());
+//using middleware for exposing static files and u have to
+// mention the folder which you want to expose
+app.use('/public',express.static(path.join(__dirname,'uploads')));
 
-app.use(express.json());//using middlewere for passing data
+
 
 app.use('/api',authRoutes);
 app.use('/api',adminRoutes);
