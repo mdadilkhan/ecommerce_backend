@@ -6,6 +6,7 @@ const env=require("dotenv");
 const app=express();
 const mongoose=require("mongoose");
 const path=require('path');
+const cors =require('cors');
 
 
 //routes
@@ -35,6 +36,8 @@ const cartRoutes=require('./routes/cart');
    
 
 
+//validate the cross origin resourse sharing or it will aloow all the url;
+app.use(cors());
 
 //using middlewere for passing data in json file none of the file is exposed towards
 // the browser
