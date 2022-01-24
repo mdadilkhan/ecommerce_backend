@@ -1,6 +1,8 @@
 const User=require("../models/user")
 const jwt =require("jsonwebtoken");
-const {validationResult}=require("express-validator")
+const bcrypt=require("bcrypt");
+const shortid=require("shortid");
+
 
 
 
@@ -9,7 +11,7 @@ const {validationResult}=require("express-validator")
 exports.signup=(req,res)=>{
     
     User.findOne({"email":req.body.email})
-    .exec((error,user)=>{
+    .exec(async(error,user)=>{
       if(user) return res.status(400).json({
           message:"user already registered"
       });
@@ -22,13 +24,14 @@ exports.signup=(req,res)=>{
           password
       }=req.body;
  
-      
+      const hash_password=await bcrypt.hash(password,10);
+
       const _user=new User({
           firstName,
           lastName,
           email,
-          password,
-          userName:Math.random().toString()
+          hash_password,
+          userName: shortid.generate()
          });
         //  console.log(_user);
          _user.save((error, data) => {
