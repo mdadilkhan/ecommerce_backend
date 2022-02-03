@@ -1,6 +1,6 @@
 const express=require('express');
 const { requireSignin, adminMiddleware } = require('../common-middleware');
-const { createProduct } = require('../controller/product');
+const { createProduct, getProductsBySlug} = require('../controller/product');
 const multer=require('multer');//for file upload,you can use formadible or file-uploader from npm for simiar work
 const router=express.Router();
 const shortid=require('shortid'); 
@@ -28,6 +28,7 @@ const storage = multer.diskStorage({
 
 
 router.post('/product/create',requireSignin,adminMiddleware,upload.array('productPicture'),createProduct);
+router.get('/products/:slug', getProductsBySlug);
 // router.get('/category/getcategory',getCategories);
 
 module.exports=router;

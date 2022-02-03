@@ -13,7 +13,7 @@ function createCategories(categories, parentId = null) {
     categoryList.push({
       _id: cate._id,
       name: cate.name,
-      slufg: cate.slug,
+      slug: cate.slug,
       parentId: cate.parentId,
       children: createCategories(categories, cate._id),
     });
