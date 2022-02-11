@@ -1,4 +1,27 @@
 const jwt=require('jsonwebtoken');
+const multer=require('multer');//for file upload,you can use formadible or file-uploader from npm for simiar work
+const shortid=require('shortid'); 
+const path=require('path');
+
+ 
+
+
+// its a multer library it is going to use method diskStorage which has two properties
+// destination(where to store file) and file name and save in mongo db database
+//  we set the destination parealel to rendering js file or just inside src folder
+//created storage
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, path.join(path.dirname(__dirname),'uploads'))
+    },
+    filename: function (req, file, cb) {
+      
+      cb(null, shortid.generate() + '-' + file.originalname);
+    }
+  }) 
+
+    //storage used
+   exports.upload=multer({storage})//used as a middleware
 
 
 exports.requireSignin=(req,res,next)=>{
