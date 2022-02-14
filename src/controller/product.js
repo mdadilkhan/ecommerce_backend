@@ -90,6 +90,7 @@ exports.getProductsBySlug = (req, res) => {
 exports.getProductDetailsById = (req, res) => {
     const { productId } = req.params;
     if (productId) {
+  
       Product.findOne({ _id: productId }).exec((error, product) => {
         if (error) return res.status(400).json({ error });
         if (product) {
@@ -116,11 +117,11 @@ exports.getProductDetailsById = (req, res) => {
     }
   };
   
-//   exports.getProducts = async (req, res) => {
-//     const products = await Product.find({ createdBy: req.user._id })
-//       .select("_id name price quantity slug description productPictures category")
-//       .populate({ path: "category", select: "_id name" })
-//       .exec();
+  exports.getProducts = async (req, res) => {
+    const products = await Product.find({ createdBy: req.user._id })
+      .select("_id name price quantity slug description productPictures category")
+      .populate({ path: "category", select: "_id name" })
+      .exec();
   
-//     res.status(200).json({ products });
-//   };
+    res.status(200).json({ products });
+  };
