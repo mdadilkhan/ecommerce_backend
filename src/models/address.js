@@ -67,10 +67,10 @@ const userAddressSchema = new mongoose.Schema(
       required: true,
       ref: "User",
     },
-    address: [addressSchema],
+    address: [addressSchema]
   },
   { timestamps: true }
 );
 
-mongoose.model("Address", addressSchema);
+// mongoose.model("UserAddress", addressSchema);
 module.exports = mongoose.model("UserAddress", userAddressSchema);
